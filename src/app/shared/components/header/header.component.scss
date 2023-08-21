@@ -1,5 +1,5 @@
 mat-toolbar {
-  background: green;
+  background: #43a047;
   color: white;
 }
 
@@ -7,7 +7,7 @@ mat-sidenav {
   margin: 16px;
   width: 200px;
   border-right: none;
-  background: green;
+  background: #43a047;;
   color: white;
   border-radius: 10px;
   padding: 16px;
@@ -40,4 +40,9 @@ mat-sidenav-container {
   mat-icon {
     margin-right: 8px;
   }
+}
+
+.logo {
+  width: 100px;
+  height: 70px;
 }

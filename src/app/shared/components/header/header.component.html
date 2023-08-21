@@ -1,7 +1,18 @@
-<mat-toolbar></mat-toolbar>
+<mat-toolbar>
+  <img src="assets/img/logo-itac.webp" class="logo" alt="logo-itac">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+</mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav mode="side" opened="">
+
+  <mat-sidenav #sidenav="matSidenav">
 
 
     <button mat-button class="menu-button">
