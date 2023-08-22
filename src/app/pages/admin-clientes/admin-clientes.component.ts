@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-clientes',
+  selector: 'itac-admin-clientes',
   templateUrl: './admin-clientes.component.html',
   styleUrls: ['./admin-clientes.component.scss']
 })

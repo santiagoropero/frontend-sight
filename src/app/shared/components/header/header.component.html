@@ -15,7 +15,7 @@
   <mat-sidenav #sidenav="matSidenav">
 
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLinkActive routerLink="/admin-roles">
       <mat-icon>person</mat-icon>
       <span>Roles</span>
     </button>
@@ -25,7 +25,7 @@
       <span>Personas</span>
     </button>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLink="/admin-clientes">
       <mat-icon>how_to_reg</mat-icon>
       <span>Clientes</span>
     </button>
@@ -40,7 +40,7 @@
 
   <mat-sidenav-content>
     <div class="content mat-elevation-z4">
-      Main Content
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
