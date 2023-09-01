@@ -11,7 +11,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {nameRol: 'Gerente de Proyecto', state: 'Activo'},
   {nameRol: 'Líder Técnico', state: 'Activo'},
   {nameRol: 'Practicante', state: 'Activo'},
-  {nameRol: 'QA', state: 'Activo'}
+  {nameRol: 'QA', state: 'Activo'},
+  {nameRol: 'Gerente de Proyecto', state: 'Activo'}
 ];
 
 @Component({
@@ -23,7 +24,6 @@ export class AdminRolesComponent implements OnInit {
 
   displayedColumns: string[] = ['nameRol', 'state',];
   dataSource = ELEMENT_DATA;
-
   constructor() { }
 
   ngOnInit(): void {

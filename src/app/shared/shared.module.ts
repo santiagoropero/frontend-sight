@@ -8,6 +8,9 @@ import { MatDividerModule } from '@angular/material/divider'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -22,7 +25,9 @@ import { MatTableModule } from '@angular/material/table';
     MatDividerModule,
     MatInputModule,
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatDatepickerModule
   ],
   exports: [
     MatToolbarModule,
@@ -32,7 +37,13 @@ import { MatTableModule } from '@angular/material/table';
     MatDividerModule,
     MatInputModule,
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  providers: [
+
   ]
 })
 export class SharedModule { }

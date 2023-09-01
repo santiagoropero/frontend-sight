@@ -1,1 +1,51 @@
-<p>admin-proyectos works!</p>
+<div class="title">
+    <h1>Administración de Proyectos</h1>
+</div>
+  
+<div class="main-contenedor">
+    <form class="container mat-elevation-z5">
+        <div class="titleCard">
+            <span>Registro de Proyectos</span>
+        </div>
+        <mat-form-field class="input-full-width">
+            <mat-label>Nombre de Proyecto</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+            <mat-label>Fecha inicio</mat-label>
+            <input matInput [matDatepicker]="inicio">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="inicio"></mat-datepicker-toggle>
+            <mat-datepicker #inicio></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+            <mat-label>Fecha fin</mat-label>
+            <input matInput [matDatepicker]="fin">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="fin"></mat-datepicker-toggle>
+            <mat-datepicker #fin></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <div class="formBoton">
+            <button mat-raised-button class="boton">Registrar</button>
+        </div>
+    </form>
+</div>
+<!-- <div class="tabla">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="projectname">
+            <th mat-header-cell *matHeaderCellDef>Nombres</th>
+            <td mat-cell *matCellDef="let element"> {{element.projectname}} </td>
+        </ng-container>
+        <ng-container matColumnDef="projectstartdate">
+            <th mat-header-cell *matHeaderCellDef>Fecha inicio</th>
+            <td mat-cell *matCellDef="let element"> {{element.projectstartdate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="projectenddate">
+            <th mat-header-cell *matHeaderCellDef>Fecha Fin</th>
+            <td mat-cell *matCellDef="let element"> {{element.projectenddate}} </td>
+        </ng-container>
+    </table>
+</div> -->
+  
+  
