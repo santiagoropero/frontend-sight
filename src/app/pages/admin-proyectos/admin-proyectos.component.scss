@@ -1,0 +1,55 @@
+.title {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    color: black;
+}
+
+.main-contenedor {
+    height: 20%;
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+}
+
+.container {
+    min-width: 150px;
+    max-width: 350px;
+    width: 100%;
+    padding: 30px;
+}
+
+.input-full-width {
+    margin-right: 5%;
+    width: 90%;
+}
+
+.icondate{
+    margin-left: -13%;
+}
+
+.formBoton {
+    display: flex;
+    justify-content: center;
+}
+
+.boton {
+    display: flex;
+}
+
+.titleCard {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+}
+
+.tabla {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
