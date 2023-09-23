@@ -21,7 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./admin-roles.component.scss'],
 })
 export class AdminRolesComponent implements OnInit {
-
+  state: string[] = ["Activo","Inactivo"];
   displayedColumns: string[] = ['nameRol', 'state',];
   dataSource = ELEMENT_DATA;
   constructor() { }

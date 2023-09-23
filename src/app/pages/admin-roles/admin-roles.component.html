@@ -14,7 +14,12 @@
       <mat-label>Nombre rol</mat-label>
       <input matInput>
     </mat-form-field>
-
+    <mat-form-field class="input-full-width">
+      <mat-label>Estado</mat-label>
+      <mat-select>
+          <mat-option [value]="state" *ngFor="let state of state">{{state}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <br>
 
     <div class="formBoton">
