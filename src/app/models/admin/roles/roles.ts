@@ -15,3 +15,22 @@ export interface Role {
   name:  string;
   state: string;
 }
+
+// Crear rol
+export class RequestCreateRol {
+  name!:  string;
+  state!: string;
+}
+
+export interface ResponseCreateRol {
+  messageResponse: MessageResponse;
+  data:            ResponseCreateRolData;
+  message:         string;
+}
+
+export interface ResponseCreateRolData {
+  rol: Role;
+}
+
+
+

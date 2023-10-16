@@ -5,25 +5,25 @@
 
 <div class="main-contenedor">
 
-  <form class="container mat-elevation-z5">
+  <form class="container mat-elevation-z5" [formGroup]="form">
 
     <div class="titleCard">
       <span>Registro de roles</span>
     </div>
     <mat-form-field class="input-full-width">
       <mat-label>Nombre rol</mat-label>
-      <input matInput>
+      <input matInput formControlName="name">
     </mat-form-field>
     <mat-form-field class="input-full-width">
       <mat-label>Estado</mat-label>
-      <mat-select>
+      <mat-select formControlName="state">
           <mat-option [value]="state" *ngFor="let state of state">{{state}}</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
 
     <div class="formBoton">
-      <button mat-raised-button class="boton">Registrar</button>
+      <button mat-raised-button class="boton" [disabled]="form.invalid" (click)="createRol()">Registrar</button>
     </div>
 
 
