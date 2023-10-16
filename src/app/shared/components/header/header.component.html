@@ -8,6 +8,17 @@
       close
     </mat-icon>
   </button>
+
+  <span class="username">Bienvenido {{ userLoggedIn?.firstName }} {{ userLoggedIn?.lastName }}</span>
+  &nbsp;
+  &nbsp;
+  <div class="vl"></div>
+  <button mat-button class="button-logout" (click)="logout()">
+    <span>Cerrar sesión</span>
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+
+
 </mat-toolbar>
 
 <mat-sidenav-container>
