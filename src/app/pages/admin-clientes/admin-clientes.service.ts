@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseAllClient } from 'src/app/models/admin/client/cliente';
+import { RequestCreateClient, ResponseAllClient, ResponseCreateClient } from 'src/app/models/admin/client/cliente';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,5 +13,9 @@ export class AdminClientesService {
 
   getClients(): Observable<ResponseAllClient> {
     return this.httpClient.get<ResponseAllClient>(`${environment.API}/admin/api/clients/all`);
+  }
+
+  createClient(requestCreateClient: RequestCreateClient) {
+     return this.httpClient.post<ResponseCreateClient>(`${environment.API}/admin/api/clients/create`, requestCreateClient);
   }
 }

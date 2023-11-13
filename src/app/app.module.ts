@@ -13,6 +13,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { SharedModule } from './shared/shared.module';
 import { initializer } from 'src/security/init-keycloak';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
     AdminClientesComponent,
     AdminProyectosComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
