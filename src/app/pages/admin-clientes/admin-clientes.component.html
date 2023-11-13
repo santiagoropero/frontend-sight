@@ -2,8 +2,8 @@
 <div class="title">
     <h1>Administración de Clientes</h1>
 </div>
-  
-<div class="main-contenedor"> 
+
+<div class="main-contenedor">
     <form class="container mat-elevation-z5">
         <div class="titleCard">
             <span>Registro de Clientes</span>
@@ -15,7 +15,7 @@
         <mat-form-field class="input-full-width">
             <mat-label>Estado</mat-label>
             <mat-select>
-                <mat-option [value]="state" *ngFor="let state of state">{{state}}</mat-option>
+                <mat-option [value]="state" *ngFor="let state of statusList">{{state}}</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
@@ -25,10 +25,10 @@
     </form>
 </div>
 <div class="tabla">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
         <ng-container matColumnDef="names">
             <th mat-header-cell *matHeaderCellDef>Nombre de Cliente</th>
-            <td mat-cell *matCellDef="let element"> {{element.clname}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
         <ng-container matColumnDef="state">
             <th mat-header-cell *matHeaderCellDef>Estado</th>
@@ -38,5 +38,4 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
-  
-  
+
