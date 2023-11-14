@@ -1,22 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import * as internal from 'stream';
-
-export interface PeriodicElement {
-  iduser: string,
-  names: string;
-  lastnames: string;
-  roles: string;
-  email: string;
-  state: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {iduser: '123', names: 'Andres', lastnames: 'Cuevas', roles: 'Arquitecto', email:'acuevas@itac.co', state: 'Activo'},
-  {iduser: '456', names: 'Andrea', lastnames: 'Garzon', roles: 'Consultor', email:'agarzon@itac.co', state: 'Activo'},
-  {iduser: '124', names: 'Camila', lastnames: 'Diaz', roles: 'Dev', email:'cdiaz@itac.co', state: 'Inactivo'},
-  {iduser: '543', names: 'David', lastnames: 'Paez', roles: 'Gerente de proyecto', email:'dpaez@itac.co', state: 'Activo'},
-  {iduser: '987', names: 'Diego', lastnames: 'Ropero', roles: 'Lider de proyecto', email:'dropero@itac.co', state: 'Activo'}
-];
+import { AdminPersonasService } from './admin-personas.service';
+import { LoadingService } from 'src/app/shared/components/loading/loading.service';
+import { Person, RequestCreatePerson } from 'src/app/models/admin/person/person';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AdminRolesService } from '../admin-roles/admin-roles.service';
+import { Role } from 'src/app/models/admin/roles/roles';
+import { States } from 'src/app/utils/states';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-personas',
@@ -25,12 +15,72 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AdminPersonasComponent implements OnInit {
   state: string[] = ["Activo","Inactivo"];
-  rol: string[] = ["Arquitecto","Consultor","Dev", "Gerente de proyecto", "Lider técnico", "Practicante", "QA", "Gerente de proyecto"];
+  roles: Role[] = []
   displayedColumns: string[] = ['iduser','names', 'lastnames', 'roles', 'email', 'state'];
-  dataSource = ELEMENT_DATA;
+  datasource: Person[] = []
+  form: FormGroup;
 
-  constructor() { }
+  constructor(
+    private adminPersonasService :AdminPersonasService,
+    private loadingService: LoadingService,
+    private formBuilder: FormBuilder,
+    private adminRolesService: AdminRolesService
+    ) {
+      this.form = this.formBuilder.group({
+        numberIdentification: new FormControl('', Validators.required),
+        names: new FormControl('', Validators.required),
+        lastNames: new FormControl('', Validators.required),
+        email: new FormControl('', Validators.required),
+        state: new FormControl('Activo'),
+        rol: new FormControl('default', Validators.required),
+      })
+    }
   ngOnInit(): void {
+    this.form.get('state')?.disable();
+    this.loadPersons();
+    this.loadRoles();
+  }
+
+  loadPersons() {
+    this.loadingService.show();
+    this.adminPersonasService.getPersons()
+    .subscribe(response => {
+      this.loadingService.hide();
+      this.datasource = response.data.persons;
+    })
+  }
+
+  loadRoles() {
+    this.adminRolesService.getRoles()
+    .subscribe(response => {
+      this.roles = response.data.roles;
+    })
+  }
+
+  createPerso() {
+    this.loadingService.show();
+    const bodyPerson = new RequestCreatePerson();
+    bodyPerson.numberIdentification = this.form.get('numberIdentification')?.value;
+    bodyPerson.names = this.form.get('names')?.value;
+    bodyPerson.lastNames = this.form.get('lastNames')?.value;
+    bodyPerson.email = this.form.get('email')?.value;
+    bodyPerson.state = States.ACTIVO;
+    bodyPerson.rol = this.form.get('rol')?.value;
+    this.adminPersonasService.createPerson(bodyPerson)
+    .subscribe(response => {
+      this.loadingService.hide();
+      this.loadPersons();
+      this.form.get('numberIdentification')?.setValue('');
+      this.form.get('names')?.setValue('')
+      this.form.get('lastNames')?.setValue('');
+      this.form.get('email')?.setValue('');
+      this.form.get('rol')?.setValue('default');
+      swal.fire(
+        response.messageResponse.responseDetail,
+        response.message,
+        'success'
+      );
+    })
   }
 
 }
