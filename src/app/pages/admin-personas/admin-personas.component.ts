@@ -32,7 +32,7 @@ export class AdminPersonasComponent implements OnInit {
         lastNames: new FormControl('', Validators.required),
         email: new FormControl('', Validators.required),
         state: new FormControl('Activo'),
-        rol: new FormControl('default', Validators.required),
+        rol: new FormControl('', Validators.required),
       })
     }
   ngOnInit(): void {

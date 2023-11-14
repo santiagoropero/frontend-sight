@@ -27,13 +27,13 @@
         <mat-form-field class="input-full-width">
             <mat-label>Estado</mat-label>
             <mat-select formControlName="state">
-              <mat-option value="default" >Seleccione</mat-option>
                 <mat-option [value]="state" *ngFor="let state of state">{{state}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="input-full-width">
             <mat-label>Rol</mat-label>
             <mat-select formControlName="rol">
+              <mat-option>Seleccione</mat-option>
                 <mat-option [value]="rol.idRol" *ngFor="let rol of roles">{{rol.name}}</mat-option>
             </mat-select>
         </mat-form-field>
