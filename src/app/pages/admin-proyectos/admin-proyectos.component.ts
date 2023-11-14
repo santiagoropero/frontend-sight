@@ -62,7 +62,7 @@ export class AdminProyectosComponent implements OnInit {
   loadPersons() {
     this.adminPersonasService.getPersons()
     .subscribe(response => {
-      this.listPersonsManagers = response.data.persons;
+      this.listPersonsManagers = response.data.persons.filter(data => data.rol.name == 'Gerente de Proyectos');
     })
   }
 
@@ -80,8 +80,8 @@ export class AdminProyectosComponent implements OnInit {
     const startDate = this.form.get('startDate')?.value;
     const endDate = this.form.get('endDate')?.value;
 
-    const startDateFormat: string | null = this.datePipe.transform(startDate, 'yyyy-MM-dd', '', '')
-    const endDateFormat: string | null = this.datePipe.transform(endDate, 'yyyy-MM-dd', '', '');
+    const startDateFormat: string | null = this.datePipe.transform(startDate, 'yyyy-MM-dd', '', 'es-CL')
+    const endDateFormat: string | null = this.datePipe.transform(endDate, 'yyyy-MM-dd', '', 'es-CL');
 
     bodyProject.name = this.form.get('name')?.value;
     bodyProject.client = this.form.get('client')?.value;

@@ -1,5 +1,8 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+// Importar idiomas locales
+import localeEs from '@angular/common/locales/es-CL';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +17,10 @@ import { SharedModule } from './shared/shared.module';
 import { initializer } from 'src/security/init-keycloak';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { registerLocaleData } from '@angular/common';
 
+// Registrar idioma local
+registerLocaleData(localeEs, 'es-CL');
 
 @NgModule({
   declarations: [
@@ -40,6 +46,10 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
       useFactory: initializer,
       deps: [KeycloakService],
       multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'es'
     }
   ],
   bootstrap: [AppComponent]

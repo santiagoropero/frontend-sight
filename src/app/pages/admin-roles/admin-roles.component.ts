@@ -4,6 +4,7 @@ import { AdminRolesService } from './admin-roles.service';
 import { RequestCreateRol } from '../../models/admin/roles/roles';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
+import { States } from 'src/app/utils/states';
 
 @Component({
   selector: 'itac-admin-roles',
@@ -41,9 +42,10 @@ export class AdminRolesComponent implements OnInit {
   createRol() {
     const rol = new RequestCreateRol();
     rol.name = this.form.get('name')?.value;
-    rol.state = this.form.get('state')?.value;
+    rol.state = States.ACTIVO;
     this.adminRolesService.createRol(rol)
     .subscribe(response => {
+      this.form.get('name')?.setValue('');
       this.loadRoles();
       swal.fire(
         response.messageResponse.responseDetail,
