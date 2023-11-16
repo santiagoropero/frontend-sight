@@ -75,35 +75,43 @@ export class AdminProyectosComponent implements OnInit {
 
 
   createProject() {
-    this.loadingService.show();
     const bodyProject = new RequestCreateProject();
     const startDate = this.form.get('startDate')?.value;
     const endDate = this.form.get('endDate')?.value;
-
-    const startDateFormat: string | null = this.datePipe.transform(startDate, 'yyyy-MM-dd', '', 'es-CL')
-    const endDateFormat: string | null = this.datePipe.transform(endDate, 'yyyy-MM-dd', '', 'es-CL');
-
-    bodyProject.name = this.form.get('name')?.value;
-    bodyProject.client = this.form.get('client')?.value;
-    bodyProject.person = this.form.get('personManager')?.value;
-    bodyProject.dateStart = startDateFormat;
-    bodyProject.dateEnd = endDateFormat;
-    bodyProject.state = States.ACTIVO;
-    this.adminProyectosService.createProject(bodyProject)
-    .subscribe(response => {
-      this.loadingService.hide();
-      this.loadProjects();
-      this.form.get('name')?.setValue('');
-      this.form.get('startDate')?.setValue('')
-      this.form.get('endDate')?.setValue('');
-      this.form.get('personManager')?.setValue('');
-      this.form.get('client')?.setValue('');
+    if (Date.parse(endDate) < Date.parse(startDate)) {
       swal.fire(
-        response.messageResponse.responseDetail,
-        response.message,
-        'success'
+        'Datos incorrectos',
+        'La fecha fin no puede ser inferior a la fecha inicio, por favor verifique la información',
+        'warning'
       );
-    })
+    } else {
+      this.loadingService.show();
+      const startDateFormat: string | null = this.datePipe.transform(startDate, 'yyyy-MM-dd', '', 'es-CL')
+      const endDateFormat: string | null = this.datePipe.transform(endDate, 'yyyy-MM-dd', '', 'es-CL');
+      bodyProject.name = this.form.get('name')?.value;
+      bodyProject.client = this.form.get('client')?.value;
+      bodyProject.person = this.form.get('personManager')?.value;
+      bodyProject.dateStart = startDateFormat;
+      bodyProject.dateEnd = endDateFormat;
+      bodyProject.state = States.ACTIVO;
+      this.adminProyectosService.createProject(bodyProject)
+        .subscribe(response => {
+          this.loadingService.hide();
+          this.loadProjects();
+          this.form.get('name')?.setValue('');
+          this.form.get('startDate')?.setValue('')
+          this.form.get('endDate')?.setValue('');
+          this.form.get('personManager')?.setValue('');
+          this.form.get('client')?.setValue('');
+          swal.fire(
+            response.messageResponse.responseDetail,
+            response.message,
+            'success'
+          );
+        })
+    }
+
+
   }
 
 }
